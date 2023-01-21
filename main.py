@@ -16,7 +16,7 @@ def attack(char_name: str, char_class: str) -> str:
     if char_class == 'healer':
         return (f'{char_name} нанёс урон противнику равный '
                 f'{5 + randint(-3, -1)}')
-    return 'НЕ АТАКОВАЛ'
+    return f'Персонаж {char_class} не существует'
 
 
 def defence(char_name: str, char_class: str) -> str:
@@ -26,19 +26,18 @@ def defence(char_name: str, char_class: str) -> str:
         return (f'{char_name} блокировал {10 + randint(-2, 2)} урона')
     if char_class == 'healer':
         return (f'{char_name} блокировал {10 + randint(2, 5)} урона')
-    return 'НЕ ЗАЩИЩАЛСЯ'
+    return f'Персонаж {char_class} не существует'
 
 
 def special(char_name: str, char_class: str) -> str:
     if char_class == 'warrior':
-        return
-        (f'{char_name} применил специальное умение «Выносливость {80 + 25}»')
+        return (f'{char_name} применил специальное умение '
+                f'«Выносливость {80 + 25}»')
     if char_class == 'mage':
-        return
-        (f'{char_name} применил специальное умение «Атака {5 + 40}»')
+        return (f'{char_name} применил специальное умение «Атака {5 + 40}»')
     if char_class == 'healer':
-        return
-        (f'{char_name} применил специальное умение «Защита {10 + 30}»')
+        return (f'{char_name} применил специальное умение «Защита {10 + 30}»')
+    return f'Персонаж {char_class} не существует'
 
 
 def start_training(char_name: str, char_class: str) -> str:
@@ -53,7 +52,7 @@ def start_training(char_name: str, char_class: str) -> str:
           'defence — чтобы блокировать атаку противника или special — '
           'чтобы использовать свою суперсилу.')
     print('Если не хочешь тренироваться, введи команду skip.')
-    cmd: str = None
+    cmd: str = ''
     while cmd != 'skip':
         cmd = input('Введи команду: ')
         if cmd == 'attack':
@@ -66,8 +65,8 @@ def start_training(char_name: str, char_class: str) -> str:
 
 
 def choice_char_class() -> str:
-    approve_choice = None
-    char_class: str = None
+    approve_choice: str = ''
+    char_class: str = ''
     while approve_choice != 'y':
         char_class = input('Введи название персонажа, '
                            'за которого хочешь играть: '
@@ -81,9 +80,9 @@ def choice_char_class() -> str:
         if char_class == 'healer':
             print('Лекарь — могущественный заклинатель. '
                   'Черпает силы из природы, веры и духов.')
-        approve_choice: str = input('Нажми (Y), чтобы подтвердить выбор, '
-                                    'или любую другую кнопку, '
-                                    'чтобы выбрать другого персонажа ').lower()
+        approve_choice = input('Нажми (Y), чтобы подтвердить выбор, '
+                               'или любую другую кнопку, '
+                               'чтобы выбрать другого персонажа ').lower()
     return char_class
 
 
